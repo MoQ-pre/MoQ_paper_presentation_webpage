@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#090b0f" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="description" content="Anonymous project page for MoQ, a vision-language-action policy with object detection auxiliary learning." />
+    <title>MoQ — Object Grounding for Robotic Manipulation</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="nav-shell">
+      <a class="wordmark" href="#top" aria-label="MoQ home">MoQ<span>.</span></a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#motivation">Motivation</a>
+        <a href="#method">Method</a>
+        <a href="#results">Evidence</a>
+        <a href="#platform">Platform</a>
+        <a href="#real-world">Demos</a>
+      </nav>
+      <button class="menu-button" type="button" aria-controls="mobile-menu" aria-expanded="false">Menu</button>
+    </header>
+
+    <nav id="mobile-menu" class="mobile-menu" aria-label="Mobile navigation">
+      <a href="#motivation">Motivation</a>
+      <a href="#method">Method</a>
+      <a href="#results">Evidence</a>
+      <a href="#platform">Platform</a>
+      <a href="#real-world">Demos</a>
+    </nav>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <video class="hero-video" autoplay muted loop playsinline preload="metadata" poster="pic/cover.png" aria-label="MoQ physical manipulation highlight">
+          <source src="video/ral_exp_clip_compressed.mp4" type="video/mp4" />
+        </video>
+        <div class="hero-shade"></div>
+        <div class="hero-content">
+          <p class="eyebrow">Anonymous submission · Vision–Language–Action</p>
+          <h1 id="hero-title">MoQ: Improving Vision-Language-Action Policies with Object Detection Auxiliary Learning for Robotic Manipulation</h1>
+          <p class="hero-summary">A sparse, decoder-level grounding signal that helps VLA policies identify the right object, target, and grasp-relevant part when generating actions.</p>
+          <p class="hero-authors">Anonymous Authors</p>
+          <p class="hero-venue">Under review</p>
+          <div class="hero-actions" aria-label="Paper links">
+            <a class="pill-button" href="#motivation">Explore evidence</a>
+            <a class="pill-button pending-link" href="#" data-link-key="pdf">PDF</a>
+            <a class="pill-button pending-link" href="#" data-link-key="github">Code</a>
+            <a class="pill-button pending-link" href="#" data-link-key="arxiv">arXiv</a>
+          </div>
+          <p class="link-note" aria-live="polite">External links are withheld during anonymous review.</p>
+        </div>
+        <a class="scroll-cue" href="#motivation">Read the story <span aria-hidden="true">↓</span></a>
+      </section>
+
+      <section id="motivation" class="content-section motivation-section" aria-labelledby="motivation-title">
+        <div class="section-intro split-intro">
+          <div>
+            <p class="section-kicker">01 · Motivation</p>
+            <h2 id="motivation-title">Action-only supervision underconstrains task-relevant visual grounding.</h2>
+          </div>
+          <p>Behavior cloning constrains the demonstrated action trajectory, but it does not explicitly supervise the semantic identity, spatial location, or manipulation-relevant part that supports that trajectory. This leaves room for positional shortcuts and unstable behavior under layout, lighting, and object-distribution shifts.</p>
+        </div>
+        <div class="motivation-layout">
+          <figure class="paper-figure motivation-figure">
+            <img src="pic/pic1/pic1v3.png" alt="Paper figure illustrating semantic confusion and localization drift in action-only decoding" />
+            <figcaption>MoQ addresses semantic confusion and localization drift by coupling object-level grounding directly to action decoding.</figcaption>
+          </figure>
+          <div class="motivation-grid" aria-label="Motivation bad-case clips">
+            <figure class="mini-video"><video controls muted playsinline preload="metadata" poster="posters/motivation-1.mp4.png"><source src="video/badcase/motivation/case1-x2.mp4" type="video/mp4" /></video><figcaption>Bad case 01</figcaption></figure>
+            <figure class="mini-video"><video controls muted playsinline preload="metadata" poster="posters/motivation-2.mp4.png"><source src="video/badcase/motivation/case2.mp4" type="video/mp4" /></video><figcaption>Bad case 02</figcaption></figure>
+            <figure class="mini-video"><video controls muted playsinline preload="metadata" poster="posters/motivation-3.mp4.png"><source src="video/badcase/motivation/case3.mp4" type="video/mp4" /></video><figcaption>Bad case 03</figcaption></figure>
+            <figure class="mini-video"><video controls muted playsinline preload="metadata" poster="posters/motivation-4.mp4.png"><source src="video/badcase/motivation/case4_x3.mp4" type="video/mp4" /></video><figcaption>Bad case 04</figcaption></figure>
+          </div>
+        </div>
+      </section>
+
+      <section id="method" class="content-section method-section" aria-labelledby="method-title">
+        <div class="section-intro split-intro">
+          <div>
+            <p class="section-kicker">02 · Method</p>
+            <h2 id="method-title">Decoder-level query coupling for object grounding and action generation.</h2>
+          </div>
+          <p>MoQ inserts a small set of role-specific detection queries into a DiT-style action decoder. Shared self- and cross-attention enables bidirectional information exchange; task-specific feed-forward pathways and prediction heads preserve the distinct output spaces of continuous control and object detection.</p>
+        </div>
+        <figure class="paper-figure method-figure">
+          <img src="pic/pic3.png" alt="MoQ decoder architecture from the paper" />
+          <figcaption>Detection and action queries share self- and cross-attention, then branch into task-specific heads for object grounding and action chunks.</figcaption>
+        </figure>
+      </section>
+
+      <section id="results" class="content-section results-section" aria-labelledby="results-title">
+        <div class="section-intro split-intro">
+          <div>
+            <p class="section-kicker">03 · Experimental evidence</p>
+            <h2 id="results-title">Experimental evaluation across simulation and physical manipulation.</h2>
+          </div>
+          <p>We report the complete clean-setting comparison for four physical tasks, the three disturbed physical settings, and both clean and random RoboTwin2.0 evaluations. The evidence follows the six questions used in the paper’s experimental analysis.</p>
+        </div>
+
+        <div class="result-board">
+          <div class="result-stat"><strong>+8.89<span>pp</span></strong><p>RoboTwin clean average over Base-scratch</p></div>
+          <div class="result-stat"><strong>+7.78<span>pp</span></strong><p>RoboTwin random average over Base-scratch</p></div>
+          <div class="result-stat"><strong>+18.52<span>pp</span></strong><p>Real-world object selection accuracy</p></div>
+          <div class="result-stat"><strong>+2.7<span>M</span></strong><p>Additional parameters</p></div>
+        </div>
+
+        <div class="results-columns">
+          <section class="benchmark-card" aria-labelledby="sim-results-title">
+            <div class="benchmark-head"><h3 id="sim-results-title">RoboTwin2.0 average success rate</h3><span>Clean / Random</span></div>
+            <div class="column-chart" aria-label="Grouped bar chart comparing clean and random average success rates">
+              <div class="chart-scale"><span>100</span><span>75</span><span>50</span><span>25</span><span>0</span></div>
+              <div class="chart-plot">
+                <div class="chart-gridline g100"></div><div class="chart-gridline g75"></div><div class="chart-gridline g50"></div><div class="chart-gridline g25"></div><div class="chart-gridline g0"></div>
+                <div class="chart-group"><div class="chart-bars"><i class="chart-bar clean" style="--value:70.56"></i><i class="chart-bar random" style="--value:27.11"></i></div><span>PI0.5-FT</span><b>70.56 / 27.11</b></div>
+                <div class="chart-group"><div class="chart-bars"><i class="chart-bar clean" style="--value:76"></i><i class="chart-bar random" style="--value:15.89"></i></div><span>XVLA-FT</span><b>76.00 / 15.89</b></div>
+                <div class="chart-group"><div class="chart-bars"><i class="chart-bar clean" style="--value:74.67"></i><i class="chart-bar random" style="--value:30.78"></i></div><span>Base-scratch</span><b>74.67 / 30.78</b></div>
+                <div class="chart-group highlight"><div class="chart-bars"><i class="chart-bar clean" style="--value:83.56"></i><i class="chart-bar random" style="--value:38.56"></i></div><span>MoQ-scratch</span><b>83.56 / 38.56</b></div>
+              </div>
+            </div>
+            <p class="benchmark-legend"><span><i class="legend clean"></i> clean</span><span><i class="legend random"></i> random / OOD</span></p>
+          </section>
+
+          <section class="real-results-card" aria-labelledby="real-results-title">
+            <div class="benchmark-head"><h3 id="real-results-title">Real-world comparison</h3><span>Base → MoQ</span></div>
+            <div class="real-result-table" role="table" aria-label="Real-world success comparison">
+              <div class="real-result-row header" role="row"><span role="columnheader">Evaluation</span><span role="columnheader">Base</span><span role="columnheader">MoQ</span></div>
+              <div class="real-result-row" role="row"><span role="cell">Multi-position first success</span><b role="cell">52.08</b><strong role="cell">79.17</strong></div>
+              <div class="real-result-row" role="row"><span role="cell">Multi-position recovery success</span><b role="cell">72.92</b><strong role="cell">91.67</strong></div>
+              <div class="real-result-row" role="row"><span role="cell">Object selection accuracy</span><b role="cell">70.37</b><strong role="cell">88.89</strong></div>
+              <div class="real-result-row" role="row"><span role="cell">Geometric insertion accuracy</span><b role="cell">68.75</b><strong role="cell">90.63</strong></div>
+              <div class="real-result-row" role="row"><span role="cell">Mug task success</span><b role="cell">91.67</b><strong role="cell">97.22</strong></div>
+            </div>
+          </section>
+        </div>
+
+        <div class="data-table-block">
+          <div class="data-table-heading"><div><p class="section-kicker">Physical experiments · clean setting</p><h3>Complete comparison across the four real-world tasks</h3></div><span>Success rate (%)</span></div>
+          <div class="table-scroll">
+            <table class="experiment-table">
+              <thead><tr><th>Task</th><th>Metric</th><th>PI0.5-FT</th><th>XVLA-scratch</th><th>XVLA-FT</th><th>Base-scratch</th><th>MoQ-scratch</th></tr></thead>
+              <tbody>
+                <tr class="task-divider"><th rowspan="2">Multi-position pick &amp; place</th><th>First success</th><td>37.50</td><td>25.00</td><td class="rank-second">77.08</td><td>52.08</td><td class="rank-first">79.17</td></tr>
+                <tr><th>Recovery success</th><td>54.17</td><td>35.42</td><td class="rank-first">91.67</td><td>72.92</td><td class="rank-first">91.67</td></tr>
+                <tr class="task-divider"><th rowspan="2">Multi-object selection &amp; transfer</th><th>Transfer success</th><td>92.59</td><td>88.89</td><td class="rank-second">96.30</td><td class="rank-first">100.00</td><td class="rank-first">100.00</td></tr>
+                <tr><th>Selection accuracy</th><td>33.33</td><td>37.04</td><td>51.85</td><td class="rank-second">70.37</td><td class="rank-first">88.89</td></tr>
+                <tr class="task-divider"><th rowspan="3">Geometric block insertion</th><th>Task success</th><td class="rank-second">77.78</td><td>41.67</td><td>58.33</td><td>61.11</td><td class="rank-first">80.56</td></tr>
+                <tr><th>Selection accuracy</th><td class="rank-first">100.00</td><td>58.33</td><td class="rank-second">94.44</td><td>88.89</td><td>88.89</td></tr>
+                <tr><th>Insertion accuracy</th><td class="rank-second">77.78</td><td>71.43</td><td>61.76</td><td>68.75</td><td class="rank-first">90.63</td></tr>
+                <tr class="task-divider"><th>Mug into holders</th><th>Task success</th><td class="rank-second">94.44</td><td>91.67</td><td>88.89</td><td>91.67</td><td class="rank-first">97.22</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="data-table-block disturbed-table-block">
+          <div class="data-table-heading"><div><p class="section-kicker">Physical experiments · disturbed setting</p><h3>Lighting and clutter robustness</h3></div><span>Success rate (%)</span></div>
+          <div class="table-scroll">
+            <table class="experiment-table">
+              <thead><tr><th>Task / disturbance</th><th>Metric</th><th>PI0.5-FT</th><th>XVLA-scratch</th><th>XVLA-FT</th><th>Base-scratch</th><th>MoQ-scratch</th></tr></thead>
+              <tbody>
+                <tr class="task-divider"><th rowspan="2">Multi-position pick &amp; place<br /><small>+ random light</small></th><th>First success</th><td class="rank-second">33.33</td><td>18.75</td><td class="rank-first">75.00</td><td>31.25</td><td class="rank-first">75.00</td></tr>
+                <tr><th>Recovery success</th><td>47.92</td><td>20.83</td><td class="rank-first">89.58</td><td>37.50</td><td class="rank-second">87.50</td></tr>
+                <tr class="task-divider"><th rowspan="3">Geometric block insertion<br /><small>+ clutter</small></th><th>Task success</th><td>50.00</td><td>19.44</td><td>36.11</td><td class="rank-second">55.56</td><td class="rank-first">75.00</td></tr>
+                <tr><th>Selection accuracy</th><td class="rank-first">97.22</td><td>52.78</td><td>86.11</td><td>80.56</td><td class="rank-second">88.89</td></tr>
+                <tr><th>Insertion accuracy</th><td>51.43</td><td>36.84</td><td>41.94</td><td class="rank-second">68.97</td><td class="rank-first">84.38</td></tr>
+                <tr class="task-divider"><th>Mug into holders<br /><small>+ random light</small></th><th>Task success</th><td>77.78</td><td class="rank-second">88.89</td><td>86.11</td><td class="rank-second">88.89</td><td class="rank-first">91.67</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <p class="table-rank-legend" aria-label="Table ranking legend"><span class="rank-legend rank-legend-first"><i aria-hidden="true"></i>Green: highest value in each row</span><span class="rank-legend rank-legend-second"><i aria-hidden="true"></i>Yellow: second-highest value in each row</span></p>
+
+        <section class="advantages" aria-labelledby="advantages-title">
+          <div class="advantages-heading"><p class="section-kicker">Six answers from the paper</p><h3 id="advantages-title">Six practical advantages of MoQ</h3></div>
+          <div class="advantage-grid">
+            <article class="advantage-card"><span>Q1</span><h4>Spatial localization</h4><p>Improves multi-position pick-and-place by <b>+27.08 pp</b> on the first attempt and <b>+18.75 pp</b> after recovery.</p></article>
+            <article class="advantage-card"><span>Q2</span><h4>Language-specified selection</h4><p>Raises correct object selection from <b>70.37%</b> to <b>88.89%</b> under randomized layouts.</p></article>
+            <article class="advantage-card"><span>Q3</span><h4>Precise insertion</h4><p>Raises insertion accuracy from <b>68.75%</b> to <b>90.63%</b> through better spatial conditioning.</p></article>
+            <article class="advantage-card"><span>Q4</span><h4>Part-aware grasping</h4><p>Improves mug-into-holder success from <b>91.67%</b> to <b>97.22%</b> by grounding the handle.</p></article>
+            <article class="advantage-card"><span>Q5</span><h4>Illumination robustness</h4><p>Under unseen colored lighting, improves first-attempt and recovery success by <b>+43.75 pp</b> and <b>+50.00 pp</b>.</p></article>
+            <article class="advantage-card"><span>Q6</span><h4>Clutter robustness</h4><p>In cluttered insertion, reaches <b>75.00%</b> task success and <b>84.38%</b> insertion accuracy.</p></article>
+          </div>
+        </section>
+      </section>
+
+      <section id="platform" class="content-section platform-section" aria-labelledby="platform-title">
+        <div class="section-intro split-intro">
+          <div>
+            <p class="section-kicker">04 · Physical setup &amp; overview</p>
+            <h2 id="platform-title">Experimental platforms, grid layout, and overview video.</h2>
+          </div>
+          <p>We evaluate MoQ on a dual-arm 5-DoF setup with a head camera and two wrist cameras, and a single-arm 6-DoF setup with a head and wrist camera. The following grid layout and platform views define the physical evaluation protocol.</p>
+        </div>
+
+        <div class="platform-grid">
+          <figure class="platform-paper platform-paper-wide"><img src="pic/platform1.png" alt="Dual-arm 5-DoF platform from the paper" loading="lazy" /><figcaption>Dual-arm 5-DoF · head + two wrist cameras</figcaption></figure>
+          <figure class="platform-paper platform-paper-wide"><img src="pic/platform2.png" alt="Single-arm 6-DoF platform from the paper" loading="lazy" /><figcaption>Single-arm 6-DoF · head + wrist camera</figcaption></figure>
+        </div>
+
+        <div class="grid-setup">
+          <div class="grid-setup-copy">
+            <p class="section-kicker">Multi-position evaluation layout</p>
+            <h3>Grid-based placement protocol.</h3>
+            <p>The multi-position pick-and-place task places the object on a 5&nbsp;cm grid. Each arm is evaluated over a 4&nbsp;×&nbsp;3 set of test positions, isolating spatial localization and recovery behavior from object identity changes.</p>
+            <dl><div><dt>Grid spacing</dt><dd>5 cm</dd></div><div><dt>Test positions</dt><dd>4 × 3 per arm</dd></div><div><dt>Views</dt><dd>Head + wrist</dd></div></dl>
+          </div>
+          <div class="grid-setup-media">
+            <figure><img src="assets/grid-setup-overview.png" alt="Third-person overview of the projected placement grid" /><figcaption>Projected workspace overview</figcaption></figure>
+            <figure><img src="assets/grid-setup-detail.png" alt="Detailed projected grid and multi-position manipulation workspace" /><figcaption>Grid placement detail</figcaption></figure>
+          </div>
+        </div>
+
+        <figure class="highlight-window">
+          <video controls playsinline preload="metadata" poster="posters/hero-highlight.mp4.png"><source src="video/ral_video_show_compressed2.mp4" type="video/mp4" />Your browser does not support the video tag.</video>
+          <figcaption><span>MoQ highlight reel</span><span>Independent overview video</span></figcaption>
+        </figure>
+
+        <section class="third-view-section" aria-labelledby="third-view-title">
+          <div class="third-view-heading"><p class="section-kicker">Third-person demonstrations</p><h3 id="third-view-title">Third-person demonstrations.</h3><p>These four clips, extracted from the provided presentation, show the physical scene from an independent third-person viewpoint before the camera-recorded experiment videos.</p></div>
+          <div class="third-view-grid">
+            <figure class="third-video"><video controls playsinline preload="metadata" poster="posters/third-view-30.mp4.png"><source src="third_view/third-view-30.mp4" type="video/mp4" /></video><figcaption>Third-view example 01</figcaption></figure>
+            <figure class="third-video"><video controls playsinline preload="metadata" poster="posters/third-view-31.mp4.png"><source src="third_view/third-view-31.mp4" type="video/mp4" /></video><figcaption>Third-view example 02</figcaption></figure>
+            <figure class="third-video"><video controls playsinline preload="metadata" poster="posters/third-view-32.mp4.png"><source src="third_view/third-view-32.mp4" type="video/mp4" /></video><figcaption>Third-view example 03</figcaption></figure>
+            <figure class="third-video"><video controls playsinline preload="metadata" poster="posters/third-view-33.mp4.png"><source src="third_view/third-view-33.mp4" type="video/mp4" /></video><figcaption>Third-view example 04</figcaption></figure>
+          </div>
+        </section>
+      </section>
+
+      <section id="real-world" class="content-section real-section" aria-labelledby="real-title">
+        <div class="section-intro wide-intro">
+          <p class="section-kicker">05 · Camera-aligned real-world demonstrations</p>
+          <h2 id="real-title">Real-world experiment recordings.</h2>
+          <p>Each clean task is recorded from the head and wrist cameras used by the policy. Tasks 1, 3, and 4 are shown as a single two-view row; task 2 retains all three available camera views. Below each recording, the original PPT detection frames are kept as individual images: head frames form one row and wrist frames form separate row(s). Hover, focus, or tap any frame to inspect that specific frame.</p>
+        </div>
+
+        <div class="task-stack">
+          <article class="task-card">
+            <header class="task-header"><div><span class="task-index">01</span><h3>Multi-position pick and place</h3></div><p>Spatial generalization · 2 views</p></header>
+            <div class="camera-row two-camera-row">
+              <figure class="view-frame"><video controls playsinline preload="metadata" poster="posters/task1-head.mp4.png"><source src="video/realworld/task1/task1-head.mp4" type="video/mp4" />Your browser does not support the video tag.</video><figcaption><span>Head camera</span><span>Overview</span></figcaption></figure>
+              <figure class="view-frame"><video controls playsinline preload="metadata" poster="posters/task1-right.mp4.png"><source src="video/realworld/task1/task1-r-clean.mp4" type="video/mp4" />Your browser does not support the video tag.</video><figcaption><span>Right wrist camera</span><span>Grasp &amp; placement</span></figcaption></figure>
+            </div>
+            <figure class="detection-sequence camera-detection-sequence">
+              <div class="detection-view"><p>Head camera · 4 detection frames</p><div class="frame-strip" data-frame-set="task1-clean-head" data-frame-alt="Task 1 clean head-camera detection"></div></div>
+              <div class="detection-view"><p>Right wrist camera · 4 detection frames</p><div class="frame-strip" data-frame-set="task1-clean-right-wrist" data-frame-alt="Task 1 clean right-wrist detection"></div></div>
+              <figcaption><span>Detection frames · task 1 clean</span><span>Original PPT frames · hover or focus to enlarge</span></figcaption>
+            </figure>
+          </article>
+
+          <article class="task-card task-card-featured">
+            <header class="task-header"><div><span class="task-index">02</span><h3>Multi-object selection and transfer</h3></div><p>Language-conditioned grounding · 3 views</p></header>
+            <div class="camera-row three-camera-row">
+              <figure class="view-frame"><video controls playsinline preload="metadata" poster="posters/task2-head.mp4.png"><source src="video/realworld/task2/head.mp4" type="video/mp4" />Your browser does not support the video tag.</video><figcaption><span>Head camera</span><span>Scene context</span></figcaption></figure>
+              <figure class="view-frame"><video controls playsinline preload="metadata" poster="posters/task2-left.mp4.png"><source src="video/realworld/task2/left.mp4" type="video/mp4" />Your browser does not support the video tag.</video><figcaption><span>Left wrist camera</span><span>Supporting view</span></figcaption></figure>
+              <figure class="view-frame"><video controls playsinline preload="metadata" poster="posters/task2-right.mp4.png"><source src="video/realworld/task2/right.mp4" type="video/mp4" />Your browser does not support the video tag.</video><figcaption><span>Right wrist camera</span><span>Object interaction</span></figcaption></figure>
+            </div>
+            <figure class="detection-sequence camera-detection-sequence">
+              <div class="detection-view"><p>Head camera · 5 detection frames</p><div class="frame-strip" data-frame-set="task2-clean-head" data-frame-alt="Task 2 clean head-camera detection"></div></div>
+              <div class="detection-view"><p>Left wrist camera · 5 detection frames</p><div class="frame-strip" data-frame-set="task2-clean-left-wrist" data-frame-alt="Task 2 clean left-wrist detection"></div></div>
+              <div class="detection-view"><p>Right wrist camera · 5 detection frames</p><div class="frame-strip" data-frame-set="task2-clean-right-wrist" data-frame-alt="Task 2 clean right-wrist detection"></div></div>
+              <figcaption><span>Detection frames · task 2 clean</span><span>Original PPT frames · hover or focus to enlarge</span></figcaption>
+            </figure>
+          </article>
+
+          <article class="task-card">
+            <header class="task-header"><div><span class="task-index">03</span><h3>Geometric block insertion</h3></div><p>Shape-aware manipulation · 2 views</p></header>
+            <div class="camera-row two-camera-row">
+              <figure class="view-frame"><video controls playsinline preload="metadata" poster="posters/task3-head.mp4.png"><source src="video/realworld/task3/head.mp4" type="video/mp4" />Your browser does not support the video tag.</video><figcaption><span>Head camera</span><span>Task overview</span></figcaption></figure>
+              <figure class="view-frame"><video controls playsinline preload="metadata" poster="posters/task3-left.mp4.png"><source src="video/realworld/task3/left.mp4" type="video/mp4" />Your browser does not support the video tag.</video><figcaption><span>Left wrist camera</span><span>Insertion view</span></figcaption></figure>
+            </div>
+            <figure class="detection-sequence camera-detection-sequence">
+              <div class="detection-view"><p>Head camera · 4 detection frames</p><div class="frame-strip" data-frame-set="task3-clean-head" data-frame-alt="Task 3 clean head-camera detection"></div></div>
+              <div class="detection-view"><p>Left wrist camera · 4 detection frames</p><div class="frame-strip" data-frame-set="task3-clean-left-wrist" data-frame-alt="Task 3 clean left-wrist detection"></div></div>
+              <figcaption><span>Detection frames · task 3 clean</span><span>Original PPT frames · hover or focus to enlarge</span></figcaption>
+            </figure>
+          </article>
+
+          <article class="task-card">
+            <header class="task-header"><div><span class="task-index">04</span><h3>Mug into holders</h3></div><p>Target-aware placement · 2 views</p></header>
+            <div class="camera-row two-camera-row">
+              <figure class="view-frame"><video controls playsinline preload="metadata" poster="posters/task4-head.mp4.png"><source src="video/realworld/task4/head.mp4" type="video/mp4" />Your browser does not support the video tag.</video><figcaption><span>Head camera</span><span>Task overview</span></figcaption></figure>
+              <figure class="view-frame"><video controls playsinline preload="metadata" poster="posters/task4-left.mp4.png"><source src="video/realworld/task4/left.mp4" type="video/mp4" />Your browser does not support the video tag.</video><figcaption><span>Left wrist camera</span><span>Approach &amp; placement</span></figcaption></figure>
+            </div>
+            <figure class="detection-sequence camera-detection-sequence">
+              <div class="detection-view"><p>Head camera · 4 detection frames</p><div class="frame-strip" data-frame-set="task4-clean-head" data-frame-alt="Task 4 clean head-camera detection"></div></div>
+              <div class="detection-view"><p>Left wrist camera · 4 detection frames</p><div class="frame-strip" data-frame-set="task4-clean-left-wrist" data-frame-alt="Task 4 clean left-wrist detection"></div></div>
+              <figcaption><span>Detection frames · task 4 clean</span><span>Original PPT frames · hover or focus to enlarge</span></figcaption>
+            </figure>
+          </article>
+        </div>
+
+        <section class="disturbed-recordings" aria-labelledby="disturbed-title">
+          <div class="section-intro split-intro compact-intro">
+            <div><p class="section-kicker">Real-world disturbed settings</p><h3 id="disturbed-title">Lighting and clutter demo videos.</h3></div>
+            <p>These demo videos correspond to the disturbed evaluations reported above: random colored lighting for tasks 1 and 4, and unseen tabletop clutter for task 3.</p>
+          </div>
+          <div class="disturbed-grid">
+            <article class="disturbed-card"><header><span>Task 1 · random light</span><b>Pick &amp; place</b></header><div class="camera-row two-camera-row"><figure class="view-frame"><video controls playsinline preload="metadata" poster="posters/task1-dist-head.mp4.png"><source src="video/realworld/task1/random-head.mp4" type="video/mp4" /></video><figcaption><span>Head</span><span>Disturbed</span></figcaption></figure><figure class="view-frame"><video controls playsinline preload="metadata" poster="posters/task1-dist-right.mp4.png"><source src="video/realworld/task1/random-right.mp4" type="video/mp4" /></video><figcaption><span>Wrist</span><span>Disturbed</span></figcaption></figure></div><figure class="detection-sequence compact-detection-sequence"><div class="detection-view"><p>Head camera</p><div class="frame-strip" data-frame-set="task1-random-head" data-frame-alt="Task 1 random-light head-camera detection"></div></div><div class="detection-view"><p>Right wrist camera</p><div class="frame-strip" data-frame-set="task1-random-right-wrist" data-frame-alt="Task 1 random-light right-wrist detection"></div></div><figcaption><span>Detection frames · random light</span><span>Original PPT frames</span></figcaption></figure></article>
+            <article class="disturbed-card"><header><span>Task 3 · clutter</span><b>Block insertion</b></header><div class="camera-row two-camera-row"><figure class="view-frame"><video controls playsinline preload="metadata" poster="posters/task3-dist-head.mp4.png"><source src="video/realworld/task3/random-head.mp4" type="video/mp4" /></video><figcaption><span>Head</span><span>Disturbed</span></figcaption></figure><figure class="view-frame"><video controls playsinline preload="metadata" poster="posters/task3-dist-left.mp4.png"><source src="video/realworld/task3/left-random.mp4" type="video/mp4" /></video><figcaption><span>Wrist</span><span>Disturbed</span></figcaption></figure></div><figure class="detection-sequence compact-detection-sequence"><div class="detection-view"><p>Head camera</p><div class="frame-strip" data-frame-set="task3-random-head" data-frame-alt="Task 3 clutter head-camera detection"></div></div><div class="detection-view"><p>Left wrist camera</p><div class="frame-strip" data-frame-set="task3-random-left-wrist" data-frame-alt="Task 3 clutter left-wrist detection"></div></div><figcaption><span>Detection frames · clutter</span><span>Original PPT frames</span></figcaption></figure></article>
+            <article class="disturbed-card"><header><span>Task 4 · random light</span><b>Mug placement</b></header><div class="camera-row two-camera-row"><figure class="view-frame"><video controls playsinline preload="metadata" poster="posters/task4-dist-head.mp4.png"><source src="video/realworld/task4/head-random.mp4" type="video/mp4" /></video><figcaption><span>Head</span><span>Disturbed</span></figcaption></figure><figure class="view-frame"><video controls playsinline preload="metadata" poster="posters/task4-dist-left.mp4.png"><source src="video/realworld/task4/left-random.mp4" type="video/mp4" /></video><figcaption><span>Wrist</span><span>Disturbed</span></figcaption></figure></div><figure class="detection-sequence compact-detection-sequence"><div class="detection-view"><p>Head camera</p><div class="frame-strip" data-frame-set="task4-random-head" data-frame-alt="Task 4 random-light head-camera detection"></div></div><div class="detection-view"><p>Left wrist camera</p><div class="frame-strip" data-frame-set="task4-random-left-wrist" data-frame-alt="Task 4 random-light left-wrist detection"></div></div><figcaption><span>Detection frames · random light</span><span>Original PPT frames</span></figcaption></figure></article>
+          </div>
+        </section>
+      </section>
+
+      <section id="simulation" class="content-section simulation-section" aria-labelledby="simulation-title">
+        <div class="section-intro split-intro">
+          <div><p class="section-kicker">07 · RoboTwin2.0 experiment recordings</p><h2 id="simulation-title">Clean and random evaluation videos.</h2></div>
+          <p>For each selected RoboTwin2.0 task, the clean and random clips are displayed together. The random setting is held out during training and probes robustness to cluttered textures and visual distractors.</p>
+        </div>
+        <div class="simulation-subsection"><div class="simulation-label"><span>Clean setting</span><small>in-distribution recording</small></div><div class="simulation-grid">
+          <div class="sim-demo"><figure class="sim-video"><video controls muted playsinline preload="metadata" poster="posters/sim-hammer.mp4.png"><source src="video/sim/hammer/0_1/0_1.mp4" type="video/mp4" /></video><figcaption>Beat block hammer</figcaption></figure><figure class="detection-sequence simulation-sequence"><div class="frame-strip" data-frame-set="sim-hammer-clean" data-frame-alt="Clean hammer detection"></div><figcaption><span>Detection frames · 5 original images</span><span>Hover or focus to enlarge</span></figcaption></figure></div>
+          <div class="sim-demo"><figure class="sim-video"><video controls muted playsinline preload="metadata" poster="posters/sim-phone.mp4.png"><source src="video/sim/phone/1_1/1_1.mp4" type="video/mp4" /></video><figcaption>Place phone stand</figcaption></figure><figure class="detection-sequence simulation-sequence"><div class="frame-strip" data-frame-set="sim-phone-clean" data-frame-alt="Clean phone detection"></div><figcaption><span>Detection frames · 5 original images</span><span>Hover or focus to enlarge</span></figcaption></figure></div>
+          <div class="sim-demo"><figure class="sim-video"><video controls muted playsinline preload="metadata" poster="posters/sim-basket.mp4.png"><source src="video/sim/baseket/0_1/0_1.mp4" type="video/mp4" /></video><figcaption>Place object basket</figcaption></figure><figure class="detection-sequence simulation-sequence"><div class="frame-strip" data-frame-set="sim-basket-clean" data-frame-alt="Clean basket detection"></div><figcaption><span>Detection frames · 9 original images</span><span>Hover or focus to enlarge</span></figcaption></figure></div>
+          <div class="sim-demo"><figure class="sim-video"><video controls muted playsinline preload="metadata" poster="posters/sim-plate.mp4.png"><source src="video/sim/plate/0_1/0_1.mp4" type="video/mp4" /></video><figcaption>Place container plate</figcaption></figure><figure class="detection-sequence simulation-sequence"><div class="frame-strip" data-frame-set="sim-plate-clean" data-frame-alt="Clean plate detection"></div><figcaption><span>Detection frames · 6 original images</span><span>Hover or focus to enlarge</span></figcaption></figure></div>
+          <div class="sim-demo"><figure class="sim-video"><video controls muted playsinline preload="metadata" poster="posters/sim-stand.mp4.png"><source src="video/sim/stand/4_1/4_1.mp4" type="video/mp4" /></video><figcaption>Place object stand</figcaption></figure><figure class="detection-sequence simulation-sequence"><div class="frame-strip" data-frame-set="sim-stand-clean" data-frame-alt="Clean stand detection"></div><figcaption><span>Detection frames · 6 original images</span><span>Hover or focus to enlarge</span></figcaption></figure></div>
+        </div></div>
+        <div class="simulation-subsection random-simulation"><div class="simulation-label"><span>Random setting</span><small>held-out visual perturbation</small></div><div class="simulation-grid">
+          <div class="sim-demo"><figure class="sim-video"><video controls muted playsinline preload="metadata" poster="posters/sim-random-hammer.mp4.png"><source src="video/sim/hammer/13_1-random/13_1.mp4" type="video/mp4" /></video><figcaption>Beat block hammer · random</figcaption></figure><figure class="detection-sequence simulation-sequence"><div class="frame-strip" data-frame-set="sim-hammer-random" data-frame-alt="Random hammer detection"></div><figcaption><span>Detection frames · 5 original images</span><span>Hover or focus to enlarge</span></figcaption></figure></div>
+          <div class="sim-demo"><figure class="sim-video"><video controls muted playsinline preload="metadata" poster="posters/sim-random-phone.mp4.png"><source src="video/sim/phone/3_1/3_1.mp4" type="video/mp4" /></video><figcaption>Place phone stand · random</figcaption></figure><figure class="detection-sequence simulation-sequence"><div class="frame-strip" data-frame-set="sim-phone-random" data-frame-alt="Random phone detection"></div><figcaption><span>Detection frames · 5 original images</span><span>Hover or focus to enlarge</span></figcaption></figure></div>
+          <div class="sim-demo"><figure class="sim-video"><video controls muted playsinline preload="metadata" poster="posters/sim-random-basket.mp4.png"><source src="video/sim/baseket/10_1/10_1.mp4" type="video/mp4" /></video><figcaption>Place object basket · random</figcaption></figure><figure class="detection-sequence simulation-sequence"><div class="frame-strip" data-frame-set="sim-basket-random" data-frame-alt="Random basket detection"></div><figcaption><span>Detection frames · 9 original images</span><span>Hover or focus to enlarge</span></figcaption></figure></div>
+          <div class="sim-demo"><figure class="sim-video"><video controls muted playsinline preload="metadata" poster="posters/sim-random-plate.mp4.png"><source src="video/sim/plate/2_1/2_1.mp4" type="video/mp4" /></video><figcaption>Place container plate · random</figcaption></figure><figure class="detection-sequence simulation-sequence"><div class="frame-strip" data-frame-set="sim-plate-random" data-frame-alt="Random plate detection"></div><figcaption><span>Detection frames · 6 original images</span><span>Hover or focus to enlarge</span></figcaption></figure></div>
+          <div class="sim-demo"><figure class="sim-video"><video controls muted playsinline preload="metadata" poster="posters/sim-random-stand.mp4.png"><source src="video/sim/stand/10_1/10_1.mp4" type="video/mp4" /></video><figcaption>Place object stand · random</figcaption></figure><figure class="detection-sequence simulation-sequence"><div class="frame-strip" data-frame-set="sim-stand-random" data-frame-alt="Random stand detection"></div><figcaption><span>Detection frames · 6 original images</span><span>Hover or focus to enlarge</span></figcaption></figure></div>
+        </div></div>
+      </section>
+
+      <section class="closing-section">
+        <p class="section-kicker">MoQ</p>
+        <h2>Object-centric auxiliary supervision<br />for robust VLA action decoding.</h2>
+        <div class="hero-actions" aria-label="Paper links">
+          <a class="pill-button pending-link" href="#" data-link-key="pdf">PDF</a>
+          <a class="pill-button pending-link" href="#" data-link-key="github">Code</a>
+          <a class="pill-button pending-link" href="#" data-link-key="arxiv">arXiv</a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>MoQ · Anonymous submission · Under review</span>
+      <span>No authors, affiliations, emails, or external identifiers are published here.</span>
+    </footer>
+    <script src="script.js"></script>
+  </body>
+</html>
