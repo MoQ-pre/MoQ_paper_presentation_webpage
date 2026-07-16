@@ -39,6 +39,10 @@ const simFrames = (task, firstSourceImage, lastSourceImage, firstFrame = 1) => A
   { length: lastSourceImage - firstSourceImage + 1 },
   (_, index) => `assets/detection-frames/sim/${task}/frame-${frameNumber(firstFrame + index)}-source-${firstSourceImage + index}.png`,
 );
+const simHeadFrames = (task, setting, count) => Array.from(
+  { length: count },
+  (_, index) => `assets/detection-frames/sim/${task}/${setting}/heatmap_${String(index).padStart(4, '0')}.png`,
+);
 
 const frameSets = {
   'task1-clean-head': ralFrames('task1', 'clean', 'head', [85, 87, 89, 91]),
@@ -66,6 +70,8 @@ const frameSets = {
   'sim-phone-random': simFrames('phone', 64, 68, 6),
   'sim-plate-clean': simFrames('plate', 69, 74),
   'sim-plate-random': simFrames('plate', 75, 80, 7),
+  'sim-scale-clean': simHeadFrames('scale', 'clean', 5),
+  'sim-scale-random': simHeadFrames('scale', 'random', 5),
 };
 
 document.querySelectorAll('[data-frame-set]').forEach((strip) => {
